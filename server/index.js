@@ -4,9 +4,13 @@ const mongoose = require("mongoose");
 require("dotenv").config(); // to use .env file
 const cors = require("cors");
 
+const authRoutes = require("./routes/auth");
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
+// routes
+app.use("/auth", authRoutes);
 
 // MONGOOSE SET UP
 const port = 3001;
