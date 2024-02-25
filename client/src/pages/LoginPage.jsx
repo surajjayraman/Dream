@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import "../styles/Login.scss";
-
+import { setLogin } from "../redux/state";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const LoginPage = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleFormChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,11 +23,13 @@ const LoginPage = () => {
         body: JSON.stringify(formData),
       });
       const loggedIn = await response.json();
+      console.log(`login status : ${loggedIn}`);
 
-      // store the token in local storage
-      
-
-      console.log(data);
+      // store the token in redux
+      if (loggedIn) {
+        dispatch(setLogin({ user: loggedIn.user, token: loggedIn.token }));
+        navigate("/");
+      }
     } catch (err) {
       console.log(err);
     }
