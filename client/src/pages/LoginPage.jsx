@@ -23,7 +23,7 @@ const LoginPage = () => {
         body: JSON.stringify(formData),
       });
       const loggedIn = await response.json();
-      console.log(`login status : ${loggedIn}`);
+      console.log(`login status : ${JSON.stringify(loggedIn)}`);
 
       // store the token in redux
       if (loggedIn) {
@@ -31,7 +31,7 @@ const LoginPage = () => {
         navigate("/");
       }
     } catch (err) {
-      console.log(err);
+      console.log("Login failed!", err.message);
     }
   };
 
