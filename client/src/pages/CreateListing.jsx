@@ -1,10 +1,11 @@
-import React from 'react'
-import "..styles/CreateListing.scss"
+import React from "react";
+import "../styles/CreateListing.scss";
+import Navbar from "../components/Navbar";
 
 const CreateListing = () => {
-  return (
-    <div>CreateListing</div>
-  )
-}
+    return <>
+        <Navbar />
+    </>;
+};
 
-export default CreateListing
+export default CreateListing;
