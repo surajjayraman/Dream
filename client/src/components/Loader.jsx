@@ -1,7 +1,12 @@
 import React from "react";
+import "./Loader.css";
 
 const Loader = () => {
-  return <div>{/* Add your loader content here */}</div>;
+  return (
+    <div className="loader">
+      <div className="loader-inner"></div>
+    </div>
+  );
 };
 
 export default Loader;
