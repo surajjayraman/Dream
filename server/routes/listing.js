@@ -55,3 +55,21 @@ router.post("/create", upload.array("listingPhotos"), async (req, res) => {
       .json({ message: "Failed to create listing!", error: err.message });
   }
 });
+
+// get all listings
+router.get("/", async (req, res) => {
+  const qCategory = req.query.category;
+  try {
+    let listings = [];
+    if (qCategory) {
+      listings = await Listing.find({ category: qCategory }).populate(
+        "creator"
+      );
+    } else {
+      listings = await Listing.find();
+    }
+    res.status(200).json(listings);
+  } catch (err) {
+    res.status(404).json({ message: "No listings found!", error: err.message });
+  }
+});
