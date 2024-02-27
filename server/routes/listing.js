@@ -66,10 +66,24 @@ router.get("/", async (req, res) => {
         "creator"
       );
     } else {
-      listings = await Listing.find();
+      listings = await Listing.find().populate("creator");
     }
     res.status(200).json(listings);
   } catch (err) {
     res.status(404).json({ message: "No listings found!", error: err.message });
   }
 });
+
+// get a listing by id
+router.get("/:listingId", async (req, res) => {
+  try {
+    const listing = await Listing.findById(req.params.listingId).populate(
+      "creator"
+    );
+    res.status(202).json(listing);
+  } catch (err) {
+    res.status(404).json({ message: "Listing not found!", error: err.message });
+  }
+});
+
+module.exports = router;
