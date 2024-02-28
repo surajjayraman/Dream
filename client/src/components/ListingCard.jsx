@@ -42,10 +42,22 @@ const ListingCard = (props) => {
                 src={`${photo.replace("public", "")}`}
                 alt={`property-pic ${index + 1}`}
               />
-              <div className="prev-button" onClick={(e) => goToPrevSlide(e)}>
+              <div
+                className="prev-button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToPrevSlide(e);
+                }}
+              >
                 <ArrowBackIosNew sx={{ fontSize: "15px" }} />
               </div>
-              <div className="next-button" onClick={(e) => goToNextSlide(e)}>
+              <div
+                className="next-button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToNextSlide(e);
+                }}
+              >
                 <ArrowForwardIos sx={{ fontSize: "15px" }} />
               </div>
             </div>
