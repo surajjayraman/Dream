@@ -1,17 +1,19 @@
 import "../styles/ListingDetails.scss";
 import Loader from "../components/Loader";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { facilities } from "../data.js";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRange } from "react-date-range";
 import Navbar from "../components/Navbar";
+import { useSelector } from "react-redux";
 
 const ListingDetails = () => {
   const [loading, setLoading] = useState(true);
   const { listingId } = useParams();
   const [listing, setListing] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getListingDetails = async () => {
@@ -41,6 +43,35 @@ const ListingDetails = () => {
   const start = new Date(dateRange[0].startDate);
   const end = new Date(dateRange[0].endDate);
   const dayCount = Math.round((end - start) / (1000 * 60 * 60 * 24)); // calculate the diff in days
+
+  // submit booking
+  const customerId = useSelector((state) => state?.user?._id);
+  const handleSubmit = async () => {
+    try {
+      const bookingForm = {
+        customerId,
+        hostId: listing.creator._id,
+        listingId,
+        startDate: dateRange[0].startDate.toDateString(),
+        endDate: dateRange[0].endDate.toDateString(),
+        totalPrice: listing.price * dayCount,
+      };
+
+      const response = await fetch("/bookings/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingForm),
+      });
+
+      if (response.ok) {
+        navigate(`/${customerId}/trips`);
+      }
+    } catch (error) {
+      console.log("Failed to submit booking:", error.message);
+    }
+  };
 
   return loading ? (
     <Loader />
@@ -120,7 +151,7 @@ const ListingDetails = () => {
               <p>Start Date: {dateRange[0].startDate.toDateString()}</p>
               <p>End Date: {dateRange[0].endDate.toDateString()}</p>
 
-              <button className="button" type="submit" onClick="">
+              <button className="button" type="submit" onClick={handleSubmit}>
                 BOOKING
               </button>
             </div>
