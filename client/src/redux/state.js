@@ -21,7 +21,7 @@ export const userSlice = createSlice({
       state.listings = action.payload.listings;
     },
     setTripList: (state, action) => {
-      state.tripList = action.payload.tripList;
+      state.user.tripList = action.payload;
     },
   },
 });

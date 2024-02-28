@@ -66,10 +66,24 @@ const ListingCard = (props) => {
       </div>
       <h3>{`${props.city}, ${props.province}, ${props.country}`}</h3>
       <p>{props.category}</p>
-      <p>{props.type}</p>
-      <p>
-        <span>${props.price}</span> per night
-      </p>
+
+      {!props.booking ? (
+        <>
+          <p>{props.type}</p>
+          <p>
+            <span>${props.price}</span> per night
+          </p>
+        </>
+      ) : (
+        <>
+          <p>
+            {props.startDate} - {props.endDate}
+          </p>
+          <p>
+            <span>${props.totalPrice}</span> total
+          </p>
+        </>
+      )}
     </div>
   );
 };

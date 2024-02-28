@@ -64,7 +64,7 @@ const Listings = () => {
               category={listing.category}
               type={listing.type}
               price={listing.price}
-              booking={listing.booking}
+              booking={false}
             />
           ))}
         </div>

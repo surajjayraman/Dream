@@ -3,12 +3,14 @@ import "../styles/List.scss";
 import Loader from "../components/Loader";
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { setTripList } from "../redux/state";
+import ListingCard from "../components/ListingCard";
 const TripList = () => {
   const [loading, setLoading] = useState(true);
   const tripList = useSelector((state) => state?.user?.tripList);
   const userId = useSelector((state) => state?.user?._id);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getTripList = async () => {
@@ -17,14 +19,15 @@ const TripList = () => {
           method: "GET",
         });
         const data = await response.json();
-        console.log(data);
+
+        dispatch(setTripList(data));
         setLoading(false);
       } catch (error) {
         console.log("Fetch trip list failed:", error.message);
       }
     };
     getTripList();
-  }, [userId]);
+  }, [dispatch, userId]);
 
   return loading ? (
     <Loader />
@@ -32,7 +35,32 @@ const TripList = () => {
     <>
       <Navbar />
       <h1 className="title-list">Your Trip list</h1>
-      <div className="list"></div>
+      <div className="list">
+        {tripList?.map(
+          ({
+            listingId,
+            hostId,
+            startDate,
+            endDate,
+            totalPrice,
+            booking = true,
+          }) => (
+            <ListingCard
+              listingId={listingId._id}
+              creator={hostId._id}
+              listingPhotoPaths={listingId.listingPhotoPaths}
+              city={listingId.city}
+              province={listingId.province}
+              country={listingId.country}
+              category={listingId.category}
+              startDate={startDate}
+              endDate={endDate}
+              totalPrice={totalPrice}
+              booking={booking}
+            />
+          )
+        )}
+      </div>
     </>
   );
 };
