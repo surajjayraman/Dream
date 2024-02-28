@@ -31,7 +31,7 @@ const Listings = () => {
       }
     };
     getFeedListings();
-  }, [dispatch,selectedCategory]);
+  }, [dispatch, selectedCategory]);
 
   console.log(`listings: ${JSON.stringify(listings)}`);
 
@@ -41,7 +41,7 @@ const Listings = () => {
         {categories?.map((category, index) => (
           <div
             key={index}
-            className="category"
+            className={`category ${selectedCategory === category.label ? "selected" : ""}`}
             onClick={() => setSelectedCategory(category.label)}
           >
             <div className="category_icon">{category.icon}</div>
