@@ -6,6 +6,7 @@ import { facilities } from "../data.js";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRange } from "react-date-range";
+import Navbar from "../components/Navbar";
 
 const ListingDetails = () => {
   const [loading, setLoading] = useState(true);
@@ -45,6 +46,7 @@ const ListingDetails = () => {
     <Loader />
   ) : (
     <>
+      <Navbar />
       <div className="listing-details">
         <div className="title">
           <h1>{listing.title}</h1>
@@ -68,7 +70,7 @@ const ListingDetails = () => {
         <hr />
         <div className="profile">
           <img
-            src={`${listing.creator.profileImagePath.repace("public", "")}`}
+            src={`${listing.creator.profileImagePath.replace("public", "")}`}
             alt="profile pic"
           ></img>
           <h3>

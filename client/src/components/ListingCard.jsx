@@ -2,10 +2,12 @@ import React from "react";
 import "../styles/ListingCard.scss";
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ListingCard = (props) => {
   // slider for images
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
 
   const goToPrevSlide = () => {
     if (currentIndex === 0) {
@@ -23,7 +25,12 @@ const ListingCard = (props) => {
     }
   };
   return (
-    <div className="listing-card">
+    <div
+      className="listing-card"
+      onClick={() => {
+        navigate(`/properties/${props.listingId}`);
+      }}
+    >
       <div className="slider-container">
         <div
           className="slider"
