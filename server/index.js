@@ -6,6 +6,7 @@ const cors = require("cors");
 
 const authRoutes = require("./routes/auth");
 const listingRoutes = require("./routes/listing");
+const bookingRoutes = require("./routes/booking");
 
 app.use(cors());
 app.use(express.json());
@@ -13,6 +14,7 @@ app.use(express.static("public"));
 // routes
 app.use("/auth", authRoutes);
 app.use("/properties", listingRoutes);
+app.use("/bookings", bookingRoutes);
 
 // MONGOOSE SET UP
 const port = 3001;
