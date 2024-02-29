@@ -80,46 +80,46 @@ const ListingDetails = () => {
       <Navbar />
       <div className="listing-details">
         <div className="title">
-          <h1>{listing.title}</h1>
+          <h1>{listing?.title}</h1>
         </div>
 
         <div className="photos">
-          {listing.listingPhotoPaths?.map((item) => {
+          {listing?.listingPhotoPaths?.map((item) => {
             return (
               <img src={`${item.replace("public", "")}`} alt="property-pic" />
             );
           })}
         </div>
         <h2>
-          {listing.type} in {listing.city}, {listing.province},{" "}
-          {listing.country}
+          {listing?.type} in {listing?.city}, {listing?.province},{" "}
+          {listing?.country}
         </h2>
         <p>
-          {listing.guestCount} guests - {listing.bedroomCount} bedroom(s) -{" "}
-          {listing.bedCount} bed(s) - {listing.bathRoomCount} bath(s)
+          {listing?.guestCount} guests - {listing?.bedroomCount} bedroom(s) -{" "}
+          {listing?.bedCount} bed(s) - {listing?.bathRoomCount} bath(s)
         </p>
         <hr />
         <div className="profile">
           <img
-            src={`${listing.creator.profileImagePath.replace("public", "")}`}
+            src={`${listing?.creator.profileImagePath.replace("public", "")}`}
             alt="profile pic"
           ></img>
           <h3>
-            Hosted by {listing.creator.firstName} {listing.creator.LastName}
+            Hosted by {listing?.creator.firstName} {listing?.creator.LastName}
           </h3>
         </div>
         <hr />
         <h3>Description</h3>
-        <p>{listing.description}</p>
+        <p>{listing?.description}</p>
         <hr />
-        <h3>{listing.highlight}</h3>
-        <p>{listing.highlightDesc}</p>
+        <h3>{listing?.highlight}</h3>
+        <p>{listing?.highlightDesc}</p>
         <hr />
         <div className="booking">
           <div>
             <h2>What this place offers?</h2>
             <div className="amenities">
-              {listing.amenities[0].split(",").map((item, index) => (
+              {listing?.amenities[0].split(",").map((item, index) => (
                 <div className="facility" key={index}>
                   <div className="facility_icon">
                     {
@@ -139,15 +139,15 @@ const ListingDetails = () => {
               <DateRange ranges={dateRange} onChange={handleSelect} />
               {dayCount > 1 ? (
                 <h2>
-                  ${listing.price} x {dayCount} nights
+                  ${listing?.price} x {dayCount} nights
                 </h2>
               ) : (
                 <h2>
-                  ${listing.price} x {dayCount} night
+                  ${listing?.price} x {dayCount} night
                 </h2>
               )}
 
-              <h2>Total price: ${listing.price * dayCount}</h2>
+              <h2>Total price: ${listing?.price * dayCount}</h2>
               <p>Start Date: {dateRange[0].startDate.toDateString()}</p>
               <p>End Date: {dateRange[0].endDate.toDateString()}</p>
 

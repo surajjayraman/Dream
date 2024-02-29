@@ -41,7 +41,8 @@ export const {
   setListings,
   setTripList,
   setWishList,
-  setReservationList,
+  setPropertyList,
+  setReservationList
 } = userSlice.actions;
 
 export default userSlice.reducer;

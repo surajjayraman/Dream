@@ -23,7 +23,7 @@ const ReservationList = () => {
         dispatch(setReservationList(data));
         setLoading(false);
       } catch (error) {
-        console.log("Fetch property list failed:", error.message);
+        console.log("Fetch reservation list failed:", error.message);
       }
     };
     getReservationList();
@@ -38,27 +38,24 @@ const ReservationList = () => {
         <div className="list">
           {reservationList?.map(
             ({
-              _id,
-              listingPhotoPaths,
-              city,
-              province,
-              country,
-              category,
-              price,
-              creator,
-              type,
-              booking = false,
+              listingId,
+              hostId,
+              startDate,
+              endDate,
+              totalPrice,
+              booking = true,
             }) => (
               <ListingCard
-                listingId={_id}
-                creator={creator}
-                listingPhotoPaths={listingPhotoPaths}
-                city={city}
-                province={province}
-                country={country}
-                category={category}
-                price={price}
-                type={type}
+                listingId={listingId._id}
+                creator={hostId}
+                listingPhotoPaths={listingId.listingPhotoPaths}
+                city={listingId.city}
+                province={listingId.province}
+                country={listingId.country}
+                category={listingId.category}
+                startDate={startDate}
+                endDate={endDate}
+                totalPrice={totalPrice}
                 booking={booking}
               />
             )
