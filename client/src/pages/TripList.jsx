@@ -47,7 +47,7 @@ const TripList = () => {
           }) => (
             <ListingCard
               listingId={listingId._id}
-              creator={hostId._id}
+              creator={hostId}
               listingPhotoPaths={listingId.listingPhotoPaths}
               city={listingId.city}
               province={listingId.province}
