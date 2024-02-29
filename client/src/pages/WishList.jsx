@@ -3,6 +3,7 @@ import "../styles/List.scss";
 import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import ListingCard from "../components/ListingCard";
+import Footer from "../components/Footer";
 
 const WishList = () => {
   const wishList = useSelector((state) => state?.user?.wishList);
@@ -41,6 +42,7 @@ const WishList = () => {
           )}
         </div>
       </div>
+      <Footer />
     </>
   );
 };

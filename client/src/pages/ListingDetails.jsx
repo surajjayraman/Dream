@@ -8,6 +8,7 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRange } from "react-date-range";
 import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
+import Footer from "../components/Footer.jsx";
 
 const ListingDetails = () => {
   const [loading, setLoading] = useState(true);
@@ -157,7 +158,8 @@ const ListingDetails = () => {
             </div>
           </div>
         </div>
-      </div>
+        </div>
+        <Footer />
     </>
   );
 };

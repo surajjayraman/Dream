@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setListings } from "../redux/state";
 import { useState } from "react";
 import Loader from "../components/Loader";
+import Footer from "../components/Footer";
 
 const SearchPage = () => {
   const { search } = useParams();
@@ -65,7 +66,8 @@ const SearchPage = () => {
             )
           )}
         </div>
-      </div>
+        </div>
+        <Footer />
     </>
   );
 };
