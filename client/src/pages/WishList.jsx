@@ -1,5 +1,5 @@
-import React from "react";
-import "../styles/WishList.scss";
+import React, { useState } from "react";
+import "../styles/List.scss";
 import Navbar from "../components/Navbar";
 import Loader from "../components/Loader";
 import { useSelector } from "react-redux";
@@ -7,10 +7,8 @@ import ListingCard from "../components/ListingCard";
 
 const WishList = () => {
   const wishList = useSelector((state) => state?.user?.wishList);
-  const [loading, setLoading] = useState(true);
-  return loading ? (
-    <Loader />
-  ) : (
+//   const [loading, setLoading] = useState(true);
+  return (
     <>
       <div>
         <Navbar />
