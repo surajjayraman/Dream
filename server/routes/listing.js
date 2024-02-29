@@ -56,7 +56,7 @@ router.post("/create", upload.array("listingPhotos"), async (req, res) => {
   }
 });
 
-// get all listings
+// get all listings or by category
 router.get("/", async (req, res) => {
   const qCategory = req.query.category;
   try {
@@ -83,6 +83,28 @@ router.get("/:listingId", async (req, res) => {
     res.status(202).json(listing);
   } catch (err) {
     res.status(404).json({ message: "Listing not found!", error: err.message });
+  }
+});
+
+// get listing by search
+router.get("/search/:search", async (req, res) => {
+  try {
+    let listings = [];
+    const search = req.params.search;
+    if (search === "All") {
+      listings = await Listing.find().populate("creator");
+    } else {
+      listings = await Listing.find({
+        $or: [
+          { category: { $regex: search, $options: "i" } },
+          { title: { $regex: search, $options: "i" } },
+        ],
+      }).populate("creator");
+    }
+
+    res.status(200).json(listings);
+  } catch (err) {
+    res.status(404).json({ message: "No listings found!", error: err.message });
   }
 });
 

@@ -76,6 +76,7 @@ router.get("/:userId/reservations", async (req, res) => {
     const reservations = await Booking.find({
       hostId: req.params.userId,
     }).populate("customerId hostId listingId");
+
     res.status(202).json(reservations);
   } catch (err) {
     res
@@ -83,4 +84,6 @@ router.get("/:userId/reservations", async (req, res) => {
       .json({ message: "Failed to get reservations", error: err.message });
   }
 });
+
+
 module.exports = router;
