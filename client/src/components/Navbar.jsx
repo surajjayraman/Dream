@@ -5,13 +5,15 @@ import variables from "../styles/variables.scss";
 import "../styles/Navbar.scss";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setLogout } from "../redux/state";
 
 const Navbar = () => {
   const [dropdownMenu, setDropdownMenu] = useState(false);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   return (
     <div className="navbar">
@@ -19,9 +21,17 @@ const Navbar = () => {
         <img src="/assets/logo.png" alt="logo" />
       </a>
       <div className="navbar_search">
-        <input type="text" placeholder="Search ..." />
-        <IconButton>
-          <Search sx={{ color: variables.pinkred }} />
+        <input
+          type="text"
+          placeholder="Search ..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <IconButton disabled={search === ""}>
+          <Search
+            sx={{ color: variables.pinkred }}
+            onClick={() => navigate(`/properties/search/${search}`)}
+          />
         </IconButton>
       </div>
       <div className="navbar_right">
