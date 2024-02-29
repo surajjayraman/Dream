@@ -64,7 +64,7 @@ const Navbar = () => {
             <Link to={`/${user._id}/trips`}>Trip List</Link>
             <Link to={`/${user._id}/wishList`}>Wish List</Link>
             <Link to={`/${user._id}/properties`}>Property List</Link>
-            <Link to="">Reservation List</Link>
+            <Link to={`/${user._id}/reservations`}>Reservation List</Link>
             <Link to="">Become A Host</Link>
             <Link to="/login" onClick={() => dispatch(setLogout())}>
               Log Out
