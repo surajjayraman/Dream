@@ -16,9 +16,12 @@ const ReservationList = () => {
   useEffect(() => {
     const getReservationList = async () => {
       try {
-        const response = await fetch(`/users/${userId}/reservations`, {
-          method: "GET",
-        });
+        const response = await fetch(
+          `https://dream-api-seven.vercel.app/users/${userId}/reservations`,
+          {
+            method: "GET",
+          }
+        );
         const data = await response.json();
 
         dispatch(setReservationList(data));

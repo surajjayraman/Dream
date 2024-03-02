@@ -16,9 +16,12 @@ const PropertyList = () => {
   useEffect(() => {
     const getPropertyList = async () => {
       try {
-        const response = await fetch(`/users/${userId}/properties`, {
-          method: "GET",
-        });
+        const response = await fetch(
+          `https://dream-api-seven.vercel.app/users/${userId}/properties`,
+          {
+            method: "GET",
+          }
+        );
         const data = await response.json();
 
         dispatch(setPropertyList(data));
