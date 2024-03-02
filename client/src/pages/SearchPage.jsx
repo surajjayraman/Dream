@@ -18,9 +18,12 @@ const SearchPage = () => {
   useEffect(() => {
     const getSearchListings = async () => {
       try {
-        const response = await fetch(`/properties/search/${search}`, {
-          method: "GET",
-        });
+        const response = await fetch(
+          `https://dream-api-seven.vercel.app/properties/search/${search}`,
+          {
+            method: "GET",
+          }
+        );
         const data = await response.json();
         dispatch(setListings({ listings: data }));
         setLoading(false);
