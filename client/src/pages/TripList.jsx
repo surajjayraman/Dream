@@ -16,9 +16,12 @@ const TripList = () => {
   useEffect(() => {
     const getTripList = async () => {
       try {
-        const response = await fetch(`/users/${userId}/trips`, {
-          method: "GET",
-        });
+        const response = await fetch(
+          `https://dream-api-seven.vercel.app/users/${userId}/trips`,
+          {
+            method: "GET",
+          }
+        );
         const data = await response.json();
 
         dispatch(setTripList(data));
