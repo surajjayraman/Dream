@@ -19,9 +19,12 @@ const ListingDetails = () => {
   useEffect(() => {
     const getListingDetails = async () => {
       try {
-        const response = await fetch(`/properties/${listingId}`, {
-          method: "GET",
-        });
+        const response = await fetch(
+          `https://dream-api-seven.vercel.app/properties/${listingId}`,
+          {
+            method: "GET",
+          }
+        );
         const data = await response.json();
         setListing(data);
         setLoading(false);
@@ -161,8 +164,8 @@ const ListingDetails = () => {
             </div>
           </div>
         </div>
-        </div>
-        <Footer />
+      </div>
+      <Footer />
     </>
   );
 };
