@@ -49,6 +49,5 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "*"
-  },
-  "proxy": "https://dream-api-seven.vercel.app/"
+  }
 }
