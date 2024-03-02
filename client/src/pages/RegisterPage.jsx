@@ -43,10 +43,13 @@ const RegisterPage = () => {
     }
     console.log(`Submit Data: ${[...register_form]}`);
     try {
-      const response = await fetch("/auth/register", {
-        method: "POST",
-        body: register_form,
-      });
+      const response = await fetch(
+        "https://dream-api-seven.vercel.app/auth/register",
+        {
+          method: "POST",
+          body: register_form,
+        }
+      );
 
       if (response.ok) {
         navigate("/login");

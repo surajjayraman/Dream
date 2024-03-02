@@ -19,8 +19,8 @@ const Listings = () => {
       try {
         const response = await fetch(
           selectedCategory !== "All"
-            ? `/properties?category=${selectedCategory}`
-            : "/properties",
+            ? `https://dream-api-seven.vercel.app/properties?category=${selectedCategory}`
+            : "https://dream-api-seven.vercel.app/properties",
           { method: "GET" }
         );
         const data = await response.json();

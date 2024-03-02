@@ -17,9 +17,12 @@ const CategoryPage = () => {
   useEffect(() => {
     const getFeedListings = async () => {
       try {
-        const response = await fetch(`/properties?category=${category}`, {
-          method: "GET",
-        });
+        const response = await fetch(
+          `https://dream-api-seven.vercel.app/properties?category=${category}`,
+          {
+            method: "GET",
+          }
+        );
         const data = await response.json();
         dispatch(setListings({ listings: data }));
         setLoading(false);
