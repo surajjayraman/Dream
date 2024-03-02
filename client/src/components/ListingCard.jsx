@@ -41,13 +41,16 @@ const ListingCard = (props) => {
 
   const patchWishList = async (e) => {
     if (user?._id !== props.creator._id) {
-      await fetch(`/users/${user?._id}/${props.listingId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          accept: "application/json",
-        },
-      })
+      await fetch(
+        `https://dream-api-seven.vercel.app/users/${user?._id}/${props.listingId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            accept: "application/json",
+          },
+        }
+      )
         .then((res) => res.json()) // parse the response as JSON
         .then((data) => {
           dispatch(setWishList(data.wishList)); // then access the wishList property
