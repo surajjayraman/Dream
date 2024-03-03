@@ -128,10 +128,13 @@ const CreateListing = () => {
       });
 
       /* Send a POST request to server */
-      const response = await fetch("/properties/create", {
-        method: "POST",
-        body: listingForm,
-      });
+      const response = await fetch(
+        "https://dream-api-seven.vercel.app/properties/create",
+        {
+          method: "POST",
+          body: listingForm,
+        }
+      );
 
       if (response.ok) {
         navigate("/");
