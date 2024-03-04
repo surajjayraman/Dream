@@ -8,7 +8,7 @@ const User = require("../models/User");
 // Multer set up
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, ".");
+    cb(null, "/tmp");
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
